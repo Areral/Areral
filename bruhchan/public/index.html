@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Брухчан — остров анонимов</title>
+<meta name="description" content="Брухчан — пространственная имиджборда. Треды здесь — каменные монолиты на туманном острове.">
+<link rel="icon" href="/img/emblem.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/board.css">
+<script type="importmap">{"imports":{"three":"/vendor/three/build/three.module.js","three/addons/":"/vendor/three/examples/jsm/"}}</script>
+<script type="module" src="/js/main.js"></script>
+</head>
+<body>
+<canvas id="world" aria-label="Остров Брухчана"></canvas>
+
+<div id="portal">
+  <div class="portalInner">
+    <div class="logo">
+      <img src="/img/emblem.svg" width="76" height="76" alt="">
+      <h1>Брухчан</h1>
+    </div>
+    <p class="tagline">имиджборда, у которой вместо ленты — остров</p>
+
+    <div class="box">
+      <div class="boxbar"><h2>Что такое Брухчан?</h2></div>
+      <div class="boxcontent">
+        <p>Здесь треды не листают — их находят. Каждый тред — каменный монолит, вкопанный в землю там, где стоял его автор. Бродишь в тумане, натыкаешься на камень, читаешь, отвечаешь. Хочешь сказать своё — встань где нравится и посади тред прямо под ногами. Его найдёт каждый, кто забредёт следом.</p>
+        <p>Регистрации нет. Паролей нет. Кук нет. IP-адреса не записываются. EXIF и геометки вырезаются из картинок ещё до того, как файл попадёт на диск. Ты — просто Аноним.</p>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxbar"><h2>Как ходить</h2></div>
+      <div class="boxcontent">
+        <table class="keys"><tbody>
+          <tr><td><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></td><td>идти</td><td><kbd>E</kbd></td><td>прочесть тред у камня</td></tr>
+          <tr><td><kbd>Shift</kbd></td><td>бежать</td><td><kbd>T</kbd></td><td>посадить тред здесь</td></tr>
+          <tr><td><kbd>Пробел</kbd></td><td>прыжок</td><td><kbd>C</kbd></td><td>каталог острова</td></tr>
+          <tr><td>мышь</td><td>осмотреться</td><td><kbd>V</kbd></td><td>вид от первого лица</td></tr>
+          <tr><td><kbd>Esc</kbd></td><td>отпустить мышь</td><td><kbd>M</kbd></td><td>ветер вкл/выкл</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+
+    <div class="box">
+      <div class="boxbar"><h2>Правила острова</h2></div>
+      <div class="boxcontent">
+        <ol>
+          <li>Не деанонь ни себя, ни других.</li>
+          <li>Ничего, за что сажают: ни ЦП, ни угроз реальным людям.</li>
+          <li>Не спамь и не засаживай остров пустыми камнями.</li>
+          <li>Отвечай по делу. Ну или хотя бы смешно.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="enter">
+      <button id="enter" type="button" disabled>Загружаем остров…</button>
+      <div id="loadStatus" class="loadStatus" aria-live="polite"></div>
+      <div id="stats" class="stats"></div>
+    </div>
+
+    <div class="portalFooter">
+      <div class="donate">Брухчан живёт без рекламы и трекеров. Помочь с оплатой сервера можно в <b>USDT</b> (сеть <b>TRC-20</b>, например с Bybit):
+        <code class="wallet">TZ3cy3xZds7rtCmQcKZKCTXbdy3fbsmPUm</code>
+        <button type="button" data-copy="TZ3cy3xZds7rtCmQcKZKCTXbdy3fbsmPUm">Скопировать</button>
+        <span class="copyStatus" aria-live="polite"></span>
+      </div>
+      <div class="disclaimer">Посты принадлежат их авторам. Брухчан не хранит IP-адресов, кук и метаданных файлов.</div>
+    </div>
+  </div>
+</div>
+
+<div id="hud" hidden>
+  <div class="hudBox hudTop"><img src="/img/emblem.svg" width="14" height="14" alt=""> <b>Брухчан</b> · /b/ — Остров · странников: <span id="online">1</span> · <span id="coords"></span></div>
+  <div class="hudBox hudLinks">[<a href="#" data-hud="catalog">Каталог</a>] [<a href="#" data-hud="plant">Посадить тред</a>] [<a href="#" data-hud="view">Вид</a>] [<a href="#" data-hud="sound">Ветер</a>] [<a href="#" data-hud="help">Помощь</a>]</div>
+  <div id="labels"></div>
+  <div id="prompt" class="hudBox hudPrompt" hidden></div>
+  <div id="toast" class="hudBox hudToast" hidden></div>
+  <div id="lockHint" class="lockHint" hidden>кликни, чтобы осмотреться</div>
+</div>
+
+<div id="board" hidden><div class="boardScroll"><div id="boardBody"></div></div></div>
+<div id="quotePreview" hidden></div>
+</body>
+</html>

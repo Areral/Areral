@@ -1,0 +1,226 @@
+/* Брухчан — classic Yotsuba palette. Raw on purpose: 1px borders, plain tables, no radius, no shadows. */
+
+*, *::before, *::after { box-sizing: border-box; border-radius: 0; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: #ffe;
+  color: #800000;
+  font: 13px arial, helvetica, sans-serif;
+  overflow: hidden;
+}
+[hidden] { display: none !important; }
+a { color: #0000ee; }
+a:hover { color: #dd0000; }
+hr { border: 0; border-top: 1px solid #d9bfb7; height: 0; margin: 6px 0; clear: both; }
+button {
+  font: 13px arial, helvetica, sans-serif;
+  color: #000;
+  background: #eee;
+  border: 1px solid #888;
+  padding: 1px 8px;
+  cursor: pointer;
+}
+button:hover:not(:disabled) { background: #fafafa; border-color: #555; }
+button:disabled { color: #777; cursor: default; }
+input[type="text"], textarea {
+  font: 13px arial, helvetica, sans-serif;
+  color: #000;
+  background: #fff;
+  border: 1px solid #aaa;
+  padding: 2px 4px;
+  margin: 0;
+}
+input[type="text"]:focus, textarea:focus { outline: 1px solid #800; outline-offset: -1px; }
+kbd {
+  font: 11px "courier new", monospace;
+  color: #000;
+  background: #f0e0d6;
+  border: 1px solid #b7a194;
+  padding: 0 3px;
+  margin-right: 2px;
+}
+code.wallet {
+  font: 12px "courier new", monospace;
+  color: #000;
+  background: #fff;
+  border: 1px solid #d9bfb7;
+  padding: 1px 4px;
+  user-select: all;
+  word-break: break-all;
+}
+
+#world { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; }
+
+/* ---------- portal (front page) */
+#portal {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  background: linear-gradient(rgba(254, 214, 175, 0.94), rgba(255, 255, 238, 0.9) 220px, rgba(255, 255, 238, 0.82));
+  z-index: 20;
+}
+.portalInner { max-width: 660px; margin: 22px auto 0; padding: 0 10px 24px; }
+.logo { text-align: center; }
+.logo img { display: block; margin: 0 auto; }
+.logo h1 {
+  font-family: tahoma, sans-serif;
+  font-size: 36px;
+  letter-spacing: -2px;
+  color: #af0a0f;
+  margin: 2px 0 0;
+}
+.tagline { text-align: center; margin: 0 0 14px; }
+.box { border: 1px solid #800; background: #fff; margin-bottom: 10px; }
+.boxbar { background: #fca; border-bottom: 1px solid #800; padding: 2px 6px; }
+.boxbar h2 { margin: 0; font-size: 13px; color: #800; }
+.boxcontent { padding: 6px 8px; color: #000; line-height: 1.4; }
+.boxcontent p { margin: 0 0 6px; }
+.boxcontent p:last-child { margin: 0; }
+.boxcontent ol { margin: 0; padding-left: 22px; }
+.keys { border-collapse: collapse; }
+.keys td { padding: 1px 12px 1px 0; }
+.enter { text-align: center; margin: 16px 0 12px; }
+#enter { font-size: 15px; font-weight: bold; padding: 4px 22px; }
+.loadStatus { margin-top: 6px; font-size: 12px; }
+.loadStatus.error { color: #d00; font-weight: bold; }
+.stats { margin-top: 4px; font-size: 11px; }
+.portalFooter { border-top: 1px solid #d9bfb7; margin-top: 14px; padding-top: 8px; font-size: 11px; text-align: center; }
+.donate { line-height: 1.8; }
+.donate button { font-size: 11px; padding: 0 6px; }
+.copyStatus { color: #117743; font-weight: bold; }
+.disclaimer { color: #800; margin-top: 4px; }
+
+/* ---------- in-world HUD */
+.hudBox {
+  position: fixed;
+  background: rgba(255, 255, 238, 0.93);
+  border: 1px solid #800;
+  color: #800;
+  font-size: 11px;
+  padding: 2px 6px;
+  z-index: 10;
+}
+.hudBox img { vertical-align: -2px; }
+.hudTop { left: 8px; top: 8px; }
+.hudLinks { right: 8px; top: 8px; }
+.hudPrompt { left: 50%; bottom: 44px; transform: translateX(-50%); font-size: 13px; padding: 3px 10px; }
+.hudPrompt .subject { color: #cc1105; font-weight: bold; }
+.hudToast { left: 50%; bottom: 84px; transform: translateX(-50%); font-size: 12px; background: #f0e0d6; border-color: #d9bfb7; color: #000; }
+.lockHint {
+  position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
+  color: #ffe; font-size: 12px; text-shadow: 0 0 2px #000; pointer-events: none; z-index: 5;
+}
+#labels { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 4; }
+.label3d {
+  position: absolute; left: 0; top: 0;
+  max-width: 280px;
+  background: #f0e0d6;
+  border: 1px solid #d9bfb7;
+  color: #000;
+  font-size: 11px;
+  padding: 1px 5px 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  will-change: transform, opacity;
+}
+.label3d .subject { color: #cc1105; font-weight: bold; }
+.label3d .meta { color: #800; }
+
+/* ---------- board overlay (thread / plant / catalog) */
+#board {
+  position: fixed; inset: 0;
+  background: rgba(24, 20, 18, 0.35);
+  display: flex; justify-content: center; align-items: stretch;
+  padding: 3vh 0;
+  z-index: 30;
+}
+.boardScroll {
+  width: min(980px, 96vw);
+  background: #ffe;
+  border: 1px solid #800;
+  overflow-y: auto;
+  padding: 6px 12px 10px;
+}
+.boardBanner { text-align: center; }
+.boardBanner img { display: block; margin: 0 auto; }
+.boardTitle { font-family: tahoma, sans-serif; font-size: 28px; font-weight: bold; letter-spacing: -2px; color: #af0a0f; }
+.boardSubtitle { font-size: 10px; margin-top: 1px; }
+.navLinks { font-size: 12px; margin: 4px 0; }
+.newReplies { font-size: 12px; margin: 4px 0; font-weight: bold; }
+.boardFooter { margin-top: 10px; padding-top: 6px; border-top: 1px solid #d9bfb7; font-size: 11px; text-align: center; }
+
+.postForm table { border-spacing: 1px; margin: 0 auto; }
+.postForm td { padding: 0; vertical-align: top; }
+.postForm td.label {
+  background: #ea8;
+  color: #800;
+  font-weight: bold;
+  border: 1px solid #800;
+  padding: 1px 5px;
+  width: 96px;
+}
+.postForm input[type="text"] { width: 240px; }
+.postForm textarea { width: 320px; height: 96px; resize: vertical; display: block; }
+.postForm input[type="file"] { font-size: 12px; color: #000; }
+.postForm label.sage { color: #000; }
+.postForm .formStatus { font-size: 12px; text-align: center; padding-top: 2px; }
+.postForm .formStatus.error { color: #d00; font-weight: bold; }
+.plantInfo { font-size: 12px; color: #000; text-align: center; margin: 4px auto 8px; max-width: 540px; }
+.boardNote { font-size: 11px; color: #000; text-align: center; margin: 2px 0 6px; }
+.rules { font-size: 10px; color: #000; width: 440px; margin: 4px auto 0; padding-left: 16px; }
+
+.thread { margin: 0; }
+.postContainer { margin: 4px 0; }
+.opContainer { display: block; overflow: hidden; }
+.replyContainer { display: flex; align-items: flex-start; }
+.sideArrows { color: #e0bfb7; margin-right: 2px; flex: none; }
+.post.reply {
+  display: table;
+  background: #f0e0d6;
+  border: 1px solid #d9bfb7;
+  border-left: 0;
+  border-top: 0;
+  padding: 2px;
+  max-width: 100%;
+}
+.post.reply.highlight { background: #f0c0b0; border-color: #d99f91; }
+.postInfo { display: block; }
+.subject { color: #cc1105; font-weight: bold; }
+.name { color: #117743; font-weight: bold; }
+.postNum a { color: inherit; text-decoration: none; }
+.postNum a:hover { color: #dd0000; }
+.backlinks { font-size: 11px; margin-left: 4px; }
+.backlinks a { margin-right: 3px; }
+blockquote.postMessage {
+  margin: 13px 40px;
+  color: #000;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.quote { color: #789922; }
+a.quotelink { color: #000080; }
+a.quotelink:hover { color: #dd0000; }
+s.spoiler { background: #000; color: #000; text-decoration: none; }
+s.spoiler:hover { color: #fff; }
+.file { margin-top: 2px; }
+.fileText { font-size: 12px; margin-left: 20px; }
+a.fileThumb { float: left; margin: 3px 20px 5px; }
+a.fileThumb img { display: block; border: 0; }
+.post.reply a.fileThumb img { max-width: 125px; max-height: 125px; width: auto; height: auto; }
+a.fileThumb.expanded { float: none; display: block; }
+a.fileThumb.expanded img { max-width: 100%; max-height: none; width: auto; height: auto; }
+.expandedWebm { margin: 3px 20px 5px; font-size: 12px; }
+.expandedWebm video { display: block; max-width: 100%; max-height: 80vh; background: #000; }
+.loading, .boardError { text-align: center; padding: 30px 0; color: #000; }
+.boardError { color: #d00; font-weight: bold; }
+
+.catalogTable { border-collapse: collapse; width: 100%; font-size: 12px; }
+.catalogTable th { background: #ea8; color: #800; border: 1px solid #800; padding: 2px 4px; text-align: left; }
+.catalogTable td { background: #f0e0d6; border: 1px solid #d9bfb7; padding: 2px 4px; color: #000; vertical-align: top; }
+.catalogTable img { display: block; max-width: 50px; max-height: 50px; }
+.catalogTable .empty { text-align: center; padding: 12px; }
+
+#quotePreview { position: fixed; z-index: 40; max-width: 640px; pointer-events: none; }
+#quotePreview .post { border: 1px solid #d9bfb7; background: #f0e0d6; display: block; padding: 2px; }
+#quotePreview a.fileThumb img { max-width: 125px; max-height: 125px; width: auto; height: auto; }

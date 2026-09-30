@@ -1,0 +1,27 @@
+services:
+  bruhchan:
+    build: .
+    image: bruhchan:latest
+    restart: unless-stopped
+    # Bound to localhost: put a TLS reverse proxy (with access logs off) or a Tor hidden service in front.
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      POSTS_PER_MINUTE: "30"
+    volumes:
+      - bruhchan-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: local
+      options:
+        max-size: "5m"
+        max-file: "2"
+
+volumes:
+  bruhchan-data:

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Брухчан</title>
+  <!-- Three-lobed flame in the flat style of the 4chan clover; lobes match FLAME in blender/build_world.py. -->
+  <defs>
+    <path id="lobe-c" d="M33 3C36 14 47 22 47 38C47 51 40 61 32 61C24 61 17 51 17 38C17 25 27 18 33 3Z"/>
+    <mask id="gap" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+      <rect width="64" height="64" fill="#fff"/>
+      <use href="#lobe-c" fill="#000" stroke="#000" stroke-width="4"/>
+    </mask>
+  </defs>
+  <g fill="#e05a00" mask="url(#gap)">
+    <path d="M6 16C13 22 25 30 25 44C25 54 20 60 14 60C8 60 3 54 3 45C3 34 8 27 6 16Z"/>
+    <path d="M58 16C51 22 39 30 39 44C39 54 44 60 50 60C56 60 61 54 61 45C61 34 56 27 58 16Z"/>
+  </g>
+  <use href="#lobe-c" fill="#ff9900"/>
+  <path d="M32 32C34 38 39 41 39 47C39 52 36 55 32 55C28 55 25 52 25 47C25 41 30 38 32 32Z" fill="#e05a00"/>
+</svg>

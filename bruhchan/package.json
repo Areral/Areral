@@ -1,0 +1,30 @@
+{
+  "name": "bruhchan",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Брухчан — пространственная 3D-имиджборда: треды как монолиты на туманном острове",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.17"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test \"test/*.test.js\"",
+    "e2e": "node test/e2e/smoke.mjs",
+    "assets": "blender -b --factory-startup -P blender/build_world.py -- --out public/assets"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "express": "^5.2.1",
+    "multer": "^2.4.0",
+    "sharp": "^0.35.5",
+    "socket.io": "^4.8.4",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.63.0",
+    "socket.io-client": "^4.8.4"
+  }
+}
